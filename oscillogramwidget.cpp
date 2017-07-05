@@ -60,8 +60,6 @@ OscillogramWidget::OscillogramWidget(QWidget *parent)
 
 OscillogramWidget::~OscillogramWidget()
 {
-    m_processorThread.quit();
-    m_processorThread.wait(10000);
 }
 
 // This function returns the maximum possible sample value for a given audio format
@@ -222,4 +220,4 @@ void OscillogramWidget::paintEvent(QPaintEvent *event)
     }
 }
 
-#include "histogramwidget.moc"
+#include "oscillogramwidget.moc"

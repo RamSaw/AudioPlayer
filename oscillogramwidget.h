@@ -27,7 +27,6 @@ protected:
 private:
     QVector<qreal> m_oscillogram;
     int m_levels;
-    QThread m_processorThread;
     bool m_isBusy;
     QVector<QAudioLevel *> audioLevels;
 };
