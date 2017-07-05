@@ -59,7 +59,7 @@ void MainWindow::on_stopButton_clicked()
 void MainWindow::on_saveButton_clicked()
 {
     QString saveFileName = QFileDialog::getSaveFileName(this,
-        tr("Select path to saving file"), "/home/");
+        tr("Select path to saving file"), QStandardPaths::standardLocations(QStandardPaths::MoviesLocation).value(0, QDir::homePath()));
     if (!saveFileName.isEmpty()) {
         qDebug() << saveFileName;
         audioPlayer_.saveInOtherThread(saveFileName);
