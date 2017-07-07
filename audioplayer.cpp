@@ -157,11 +157,10 @@ void AudioPlayer::save(const QString &saveFileName) {
                 error = av_write_frame(pOutFormat, &packet);
             }
         }
+        av_free_packet(&packet);
     }
 
-
     avcodec_free_frame(&frame);
-    av_free_packet(&packet);
     avcodec_close(outStream->codec);
     avio_close(pOutFormat->pb);
     avformat_free_context(pOutFormat);
