@@ -11,11 +11,11 @@ extern "C" {
 #include <libavutil/opt.h>
 #include <libavutil/mathematics.h>
 
+#include <libavutil/avutil.h>
 #include <libavutil/opt.h>
 #include <libavutil/mathematics.h>
 #include <libavformat/avformat.h>
 #include <libswscale/swscale.h>
-#include <libswresample/swresample.h>
 }
 
 AudioPlayer::AudioPlayer(QObject *parent) : QObject(parent), isSaveFinished_(true)
@@ -159,6 +159,8 @@ void AudioPlayer::save(const QString &saveFileName) {
         }
         av_free_packet(&packet);
     }
+
+    av_write_trailer(pOutFormat);
 
     avcodec_free_frame(&frame);
     avcodec_close(outStream->codec);
