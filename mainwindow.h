@@ -7,7 +7,6 @@
 #include <QProcess>
 #include <QPushButton>
 
-#include "oscillogramwidget.h"
 #include "oscillogram.h"
 
 namespace Ui {
@@ -56,7 +55,6 @@ private:
     QPushButton* pb;
 
     Oscillogram *oscillogram;
-    OscillogramWidget *audioOscillogram;
     QAudioProbe *audioProbe;
 
     void guessFFmpegPath();
