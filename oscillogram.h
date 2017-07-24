@@ -29,6 +29,7 @@ private:
     QVector<QtCharts::QSplineSeries *> series_;
     qint64 duration_;
     int channelCount_;
+    bool isWindowsOS_;
 };
 
 #endif // OSCILLOGRAM_H

@@ -109,7 +109,10 @@ QVector<qreal> getYValues(const QAudioBuffer& buffer) {
     return values;
 }
 
-Oscillogram::Oscillogram(QWidget *parent) : QWidget(parent), duration_(-1), channelCount_(0) {
+Oscillogram::Oscillogram(QWidget *parent) : QWidget(parent), duration_(-1), channelCount_(0), isWindowsOS_(false) {
+    QString osType = QSysInfo::productType();
+    if (osType == "windows" || osType == "winrt")
+        isWindowsOS_ = true;
 }
 
 void Oscillogram::drawCharts() {
@@ -167,8 +170,8 @@ void Oscillogram::processBuffer(const QAudioBuffer &buffer) {
 
     if (duration_ != -1) {
         QVector<qreal> values = getYValues(buffer);
-        qreal startTime = buffer.startTime();
+        qreal timeInSec = isWindowsOS_ ? buffer.startTime() / 1000.0 : buffer.startTime() / 1000000.0;
         for (int j = 0; j < channelCount_; j++)
-            series_[j]->append(startTime / 1000000.0, values[j]);
+            series_[j]->append(timeInSec, values[j]);
     }
 }
